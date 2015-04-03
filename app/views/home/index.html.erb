@@ -1,0 +1,50 @@
+
+
+<p>Tabelka</p>
+
+
+
+<%= simple_form_for @item do |t| %>
+
+	<%= t.input :name %>
+	
+	<%= simple_fields_for :prices do |f| %>
+		<%= f.input :item_id, as: :hidden %>
+		<%= f.input :price_low %>
+		<%= f.input :price_high %>
+	<% end %>
+
+	<%= t.submit 'Update' %>
+
+	<% end %>
+
+
+	
+
+	<table border="1">
+
+	<tr>
+		<td>Item Name</td>
+		<td>Low Price</td>
+		<td>Average Price</td>
+		<td>High Price</td>
+	</tr>
+
+	<% @items.each do |h| %>
+
+
+	<tr>
+	<td><%= h.name %></td>
+	<td><%= average_price(h) %></td>
+
+	<td><%= average_medium_price(h) %></td>
+
+	<td><%= average_high_price(h) %></td>
+	</tr>
+	
+	<% end %>
+
+
+
+	</table>
+
